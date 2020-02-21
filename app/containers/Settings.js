@@ -70,11 +70,7 @@ const Settings = ({ wpObject }) => {
                 </TabPanel>
               ))}
             </Tabs>
-            <button type="submit">
-                {
-                   (props.isSubmitting === true ? 'Submitting...' : 'submit')
-                }
-            </button>
+            <button type="submit" disabled={props.isSubmitting}>Submit</button>
           </form>
         );
       }}

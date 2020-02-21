@@ -18,6 +18,14 @@ function wprs_add_settings_fields($fields)
                     'subtitle' => __('No validation can be done on this field type', 'wprs'),
                     'desc' => __('This is the description field, again good for additional info.', 'wprs'),
                     'default' => 'john', 
+                ),
+                array(
+                    'id' => 'info',
+                    'type' => 'textarea',
+                    'title' => __('Info', 'wprs'),
+                    'subtitle' => __('No validation can be done on this field type', 'wprs'),
+                    'desc' => __('This is the description field, again good for additional info.', 'wprs'),
+                    'default' => 'john', 
                 )
             ),
         ),
