@@ -117,6 +117,7 @@ class Admin {
 			wp_localize_script( $this->plugin_slug . '-admin-script', 'wpr_object', array(
 				'api_nonce'   => wp_create_nonce( 'wp_rest' ),
 				'api_url'	  => rest_url( $this->plugin_slug . '/v1/' ),
+				'settings'	  => apply_filters( 'wprs_fields', array() )
 				)
 			);
 		}
