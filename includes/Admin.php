@@ -50,6 +50,13 @@ class Admin {
 	}
 
 	/**
+	 * setting_main_option
+	 * 
+	 * @since 1.0.0
+	 */
+	protected static $setting_array = array();
+
+	/**
 	 * Initialize the plugin by loading admin scripts & styles and adding a
 	 * settings page and menu.
 	 *
@@ -58,7 +65,7 @@ class Admin {
 	private function __construct() {
 		$this->plugin_slug = WP_REACT_SETTINGS_SLUG;
 		$this->version = WP_REACT_SETTINGS_VERSION;
-
+		self::$setting_array = apply_filters( 'wprs_settings', array() );
 		$this->plugin_basename = plugin_basename( plugin_dir_path( realpath( dirname( __FILE__ ) ) ) . $this->plugin_slug . '.php' );
 	}
 
@@ -78,6 +85,7 @@ class Admin {
 
 		// Add plugin action link point to settings page
 		add_filter( 'plugin_action_links_' . $this->plugin_basename, array( $this, 'add_action_links' ) );
+		register_activation_hook( WP_REACT_SETTINGS_MAIN_FILE_PATH, array($this, 'set_default_settings_fields_data') );
 	}
 
 	/**
@@ -117,7 +125,7 @@ class Admin {
 			wp_localize_script( $this->plugin_slug . '-admin-script', 'wpr_object', array(
 				'api_nonce'   => wp_create_nonce( 'wp_rest' ),
 				'api_url'	  => rest_url( $this->plugin_slug . '/v1/' ),
-				'settings'	  => apply_filters( 'wprs_fields', array() )
+				'settings'	  => self::$setting_array
 				)
 			);
 		}
@@ -162,5 +170,37 @@ class Admin {
 			),
 			$links
 		);
+	}
+
+	public function array_flatten($array) { 
+		if (!is_array($array)) { 
+		  return false; 
+		} 
+		$result = array(); 
+		foreach ($array as $key => $value) { 
+		  if (is_array($value)) { 
+			$result = array_merge($result, array_flatten($value)); 
+		  } else { 
+			$result = array_merge($result, array($key => $value));
+		  } 
+		} 
+		return $result; 
+	  }
+
+	/**
+	 * Set default settings data in database
+	 */
+	public function set_default_settings_fields_data(){
+		$list_column = array_column(self::$setting_array, 'fields');
+		$list_array = array_merge(...$list_column);
+		$new_value = \json_encode(wp_list_pluck( $list_array, 'default', 'id' ));
+
+		$option_name = 'wprs_simple_setting' ;
+		if ( get_option( $option_name ) !== false ) {
+			update_option( $option_name, $new_value );
+		} else {
+			add_option( $option_name, $new_value );
+		}
+
 	}
 }

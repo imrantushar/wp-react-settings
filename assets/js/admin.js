@@ -301,8 +301,8 @@ const Settings = ({
 }) => {
   const [tabIndex, setTabIndex] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(1);
   const [formValue, setFormValue] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
-    firstName: "",
-    lastName: "",
+    firstName: "Tushar",
+    lastName: "deo",
     email: ""
   });
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {

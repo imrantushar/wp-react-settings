@@ -6,11 +6,7 @@ import Fields from "./../components/Fields";
 
 const Settings = ({ wpObject }) => {
   const [tabIndex, setTabIndex] = useState(1);
-  const [formValue, setFormValue] = useState({
-    firstName: "",
-    lastName: "",
-    email: ""
-  });
+  const [formValue, setFormValue] = useState({});
   useEffect(() => {
     getSetting();
   }, []);

@@ -19,6 +19,8 @@ if (!defined('WPINC')) {
 define('WP_REACT_SETTINGS_VERSION', '1.0.0');
 define('WP_REACT_SETTINGS_SLUG', 'wp-react-settings');
 define('wp_REACT_SETTINGS_ROOT_DIR', plugin_dir_path(__FILE__));
+define('WP_REACT_SETTINGS_BASE_NAME', plugin_basename( __FILE__ ));
+define('WP_REACT_SETTINGS_MAIN_FILE_PATH', __FILE__);
 
 /**
  * Include Plugin Main Class
@@ -35,6 +37,6 @@ include plugin_dir_path(__FILE__) . 'includes/Plugin.php';
  */
 function Plugin_Core_Loaded()
 {
-    INC\Plugin::get_instance();
+    return INC\Plugin::get_instance();
 }
-add_action('plugins_loaded', 'WPRS\Plugin_Core_Loaded');
+$GLOBALS['WPRS'] = Plugin_Core_Loaded();

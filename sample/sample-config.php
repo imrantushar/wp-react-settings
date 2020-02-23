@@ -1,12 +1,11 @@
 <?php
-
-add_filter('wprs_fields', 'wprs_add_settings_fields');
+add_filter('wprs_settings', 'wprs_add_settings_fields');
 function wprs_add_settings_fields($fields)
 {
     return array(
         array(
             'title'            => __( 'Basic Fields', 'wprs' ),
-            'id'               => 'basic',
+            'id'               => 'normal',
             'desc'             => __( 'These are really basic fields!', 'wprs' ),
             'customizer_width' => '400px',
             'icon'             => 'el el-home',
