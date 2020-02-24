@@ -9,17 +9,11 @@
  * Text Domain:       wprs
  */
 
-namespace WPRS;
-
 // If this file is called directly, abort.
 if (!defined('WPINC')) {
     die;
 }
 
-define('WP_REACT_SETTINGS_VERSION', '1.0.0');
-define('WP_REACT_SETTINGS_SLUG', 'wp-react-settings');
-define('wp_REACT_SETTINGS_ROOT_DIR', plugin_dir_path(__FILE__));
-define('WP_REACT_SETTINGS_BASE_NAME', plugin_basename( __FILE__ ));
 define('WP_REACT_SETTINGS_MAIN_FILE_PATH', __FILE__);
 
 /**
@@ -37,6 +31,6 @@ include plugin_dir_path(__FILE__) . 'includes/Plugin.php';
  */
 function Plugin_Core_Loaded()
 {
-    return INC\Plugin::get_instance();
+    return WPRS\INC\Plugin::get_instance();
 }
 $GLOBALS['WPRS'] = Plugin_Core_Loaded();

@@ -4,6 +4,14 @@ namespace WPRS\INC\RESTAPI;
 
 class Endpoint {
     /**
+     * Main Setting Option Name
+     * 
+     * @since 1.0.0
+     * 
+     * @var string
+     */
+    private $settings_name = null;
+    /**
 	 * Instance of this class.
 	 *
 	 * @since    1.0.0
@@ -12,15 +20,13 @@ class Endpoint {
 	 */
 	protected static $instance = null;
 
-	/**
-	 * Initialize the plugin by setting localization and loading public scripts
-	 * and styles.
-	 *
-	 * @since     0.8.1
-	 */
-	private function __construct() {
-		$this->plugin_slug = WP_REACT_SETTINGS_SLUG;
-	}
+    /**
+     * Initialize hooks and option name
+     */
+    private function __construct(){
+        $this->settings_name = apply_filters('wprs_settings_name', 'wprs_simple_setting');
+        $this->do_hooks();
+    }
 
     /**
      * Set up WordPress hooks and filters
@@ -43,7 +49,6 @@ class Endpoint {
 		// If the single instance hasn't been set, set it now.
 		if ( null == self::$instance ) {
 			self::$instance = new self;
-			self::$instance->do_hooks();
 		}
 
 		return self::$instance;
@@ -53,9 +58,9 @@ class Endpoint {
      * Register the routes for the objects of the controller.
      */
     public function register_routes() {
-        $version = '1';
-        $namespace = $this->plugin_slug . '/v' . $version;
-        $endpoint = '/wprs/';
+        $version = apply_filters( 'wprs_rest_endpoint_version', '1' );
+        $namespace = WP_REACT_SETTINGS_SLUG . '/v' . $version;
+        $endpoint = apply_filters( 'wprs_rest_endpoint', '/wprs/' );
 
         register_rest_route( $namespace, $endpoint, array(
             array(
@@ -102,7 +107,7 @@ class Endpoint {
      * @return WP_Error|WP_REST_Request
      */
     public function get_wprs( $request ) {
-        $wprs_option = get_option( 'wprs_simple_setting' );
+        $wprs_option = get_option( $this->settings_name );
 
         // Don't return false if there is no option
         if ( ! $wprs_option ) {
@@ -125,7 +130,7 @@ class Endpoint {
      * @return WP_Error|WP_REST_Request
      */
     public function update_wprs( $request ) {
-        $updated = update_option( 'wprs_simple_setting', $request->get_param( 'wprsSetting' ) );
+        $updated = update_option( $this->settings_name, $request->get_param( 'wprsSetting' ) );
 
         return new \WP_REST_Response( array(
             'success'   => $updated,
@@ -140,7 +145,7 @@ class Endpoint {
      * @return WP_Error|WP_REST_Request
      */
     public function delete_wprs( $request ) {
-        $deleted = delete_option( 'wprs_simple_setting' );
+        $deleted = delete_option( $this->settings_name );
 
         return new \WP_REST_Response( array(
             'success'   => $deleted,

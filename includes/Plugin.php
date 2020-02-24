@@ -1,19 +1,8 @@
 <?php
 namespace WPRS\INC;
 
-class Plugin
+final class Plugin
 {
-
-    /**
-     * The variable name is used as the text domain when internationalizing strings
-     * of text. Its value should match the Text Domain file header in the main
-     * plugin file.
-     *
-     * @since    1.0.0
-     *
-     * @var      string
-     */
-    protected $plugin_slug = 'wp-react-settings';
 
     /**
      * Instance of this class.
@@ -31,7 +20,7 @@ class Plugin
      */
     private function __construct()
     {
-        $this->plugin_version = WP_REACT_SETTINGS_VERSION;
+        $this->define_constants();
         $this->load_dependancy();
         $this->load_dependancy_instance();
     }
@@ -59,39 +48,33 @@ class Plugin
         RESTAPI\Endpoint::get_instance();
     }
 
-    /**
-     * Return the plugin slug.
-     *
-     * @since    1.0.0
-     *
-     * @return    Plugin slug variable.
-     */
-    public function get_plugin_slug()
-    {
-        return $this->plugin_slug;
-    }
 
     /**
-     * Return the plugin version.
-     *
-     * @since    1.0.0
-     *
-     * @return    Plugin slug variable.
+     * Define WPRS Constant
+     * @since 1.0.0
      */
-    public function get_plugin_version()
-    {
-        return $this->plugin_version;
+    private function define_constants() {
+        $this->define( 'WP_REACT_SETTINGS_VERSION', '1.0.0' );
+        $this->define( 'WP_REACT_SETTINGS_SLUG', 'wp-react-settings' );
+        $this->define( 'wp_REACT_SETTINGS_ROOT_DIR', plugin_dir_path(WP_REACT_SETTINGS_MAIN_FILE_PATH) );
+        $this->define( 'WP_REACT_SETTINGS_BASE_NAME', plugin_basename(WP_REACT_SETTINGS_MAIN_FILE_PATH) );
     }
 
+
     /**
-     * Fired when the plugin is activated.
-     *
-     * @since    1.0.0
-     */
-    public static function activate()
-    {
-        add_option('wprs_simple_setting');
-    }
+	 * Define constant if not already set.
+	 *
+	 * @param string      $name  Constant name.
+	 * @param string|bool $value Constant value.
+     * @since 1.0.0
+	 */
+	private function define( $name, $value ) {
+		if ( ! defined( $name ) ) {
+			define( $name, $value );
+		}
+	}
+
+
 
     /**
      * Return an instance of this class.
