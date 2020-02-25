@@ -194,16 +194,28 @@ __webpack_require__.r(__webpack_exports__);
 const Text = ({
   id,
   title,
+  subtitle,
+  desc,
   setFieldValue
 }) => {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-info"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: id
-  }, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+  }, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "sub-title"
+  }, subtitle)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-body"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
     type: "text",
     id: id,
     name: id,
     onChange: e => setFieldValue(id, e.target.value)
-  }));
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "desc"
+  }, desc)));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Text);
@@ -228,16 +240,28 @@ __webpack_require__.r(__webpack_exports__);
 const Textarea = ({
   id,
   title,
+  subtitle,
+  desc,
   setFieldValue
 }) => {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-info"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: id
-  }, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+  }, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "sub-title"
+  }, subtitle)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-body"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
     component: "textarea",
     id: id,
     name: id,
     onChange: e => setFieldValue(id, e.target.value)
-  }));
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "desc"
+  }, desc)));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Textarea);
@@ -300,11 +324,7 @@ const Settings = ({
   wpObject
 }) => {
   const [tabIndex, setTabIndex] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(1);
-  const [formValue, setFormValue] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
-    firstName: "Tushar",
-    lastName: "deo",
-    email: ""
-  });
+  const [formValue, setFormValue] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({});
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
     getSetting();
   }, []);
@@ -343,7 +363,7 @@ const Settings = ({
       key: index
     }, item.title))), wpObject.settings.map((item, index) => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_1__["TabPanel"], {
       key: index
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, item.title), item.fields.map((fieldItem, fieldIndex) => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Fields__WEBPACK_IMPORTED_MODULE_4__["default"], _extends({}, fieldItem, {
+    }, item.fields.map((fieldItem, fieldIndex) => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Fields__WEBPACK_IMPORTED_MODULE_4__["default"], _extends({}, fieldItem, {
       setFieldValue: props.setFieldValue // formik 
       ,
       key: fieldIndex

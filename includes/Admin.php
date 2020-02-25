@@ -157,7 +157,7 @@ class Admin
      */
     public function display_plugin_admin_page()
     {
-        ?><div id="wprs-admin-root"></div><?php
+        ?><div id="wprs-admin-root" class="wprs-admin-root"></div><?php
 }
 
     /**

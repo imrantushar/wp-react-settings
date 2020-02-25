@@ -55,7 +55,6 @@ const Settings = ({ wpObject }) => {
               </TabList>
               {wpObject.settings.map((item, index) => (
                 <TabPanel key={index}>
-                  <h2>{item.title}</h2>
                   {item.fields.map((fieldItem, fieldIndex) => (
                     <Fields
                       {...fieldItem}
