@@ -129,7 +129,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _type_Text__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./type/Text */ "./app/components/type/Text.js");
 /* harmony import */ var _type_Textarea__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./type/Textarea */ "./app/components/type/Textarea.js");
-/* harmony import */ var _components_type_Error__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../components/type/Error */ "./app/components/type/Error.js");
+/* harmony import */ var _type_Checkbox__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./type/Checkbox */ "./app/components/type/Checkbox.js");
+/* harmony import */ var _type_Radio__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./type/Radio */ "./app/components/type/Radio.js");
+/* harmony import */ var _components_type_Error__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../components/type/Error */ "./app/components/type/Error.js");
+
+
 
 
 
@@ -142,14 +146,65 @@ const Fields = props => {
     renderComponent = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_type_Text__WEBPACK_IMPORTED_MODULE_1__["default"], props);
   } else if (props.type === 'textarea') {
     renderComponent = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_type_Textarea__WEBPACK_IMPORTED_MODULE_2__["default"], props);
+  } else if (props.type === 'checkbox') {
+    renderComponent = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_type_Checkbox__WEBPACK_IMPORTED_MODULE_3__["default"], props);
+  } else if (props.type === 'radio') {
+    renderComponent = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_type_Radio__WEBPACK_IMPORTED_MODULE_4__["default"], props);
   } else {
-    renderComponent = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_type_Error__WEBPACK_IMPORTED_MODULE_3__["default"], props);
+    renderComponent = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_type_Error__WEBPACK_IMPORTED_MODULE_5__["default"], props);
   }
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, renderComponent);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Fields);
+
+/***/ }),
+
+/***/ "./app/components/type/Checkbox.js":
+/*!*****************************************!*\
+  !*** ./app/components/type/Checkbox.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var formik__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! formik */ "./node_modules/formik/dist/formik.esm.js");
+
+
+
+const Checkbox = ({
+  id,
+  title,
+  subtitle,
+  desc,
+  setFieldValue
+}) => {
+  const [field] = Object(formik__WEBPACK_IMPORTED_MODULE_1__["useField"])(id);
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-info"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: id
+  }, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "sub-title"
+  }, subtitle)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-body"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "checkbox",
+    checked: field.value,
+    name: field.name,
+    onChange: () => setFieldValue(field.name, !field.value)
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "desc"
+  }, desc)));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Checkbox);
 
 /***/ }),
 
@@ -173,6 +228,54 @@ const Error = () => {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Error);
+
+/***/ }),
+
+/***/ "./app/components/type/Radio.js":
+/*!**************************************!*\
+  !*** ./app/components/type/Radio.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var formik__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! formik */ "./node_modules/formik/dist/formik.esm.js");
+
+
+
+const Radio = props => {
+  const [field] = Object(formik__WEBPACK_IMPORTED_MODULE_1__["useField"])(props.id);
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-info"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: props.id
+  }, props.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "sub-title"
+  }, props.subtitle)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-body"
+  }, Object.keys(props.options).map((item, index) => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "radio-item",
+    key: index
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    id: props.id + item,
+    value: item,
+    checked: field.value == item,
+    name: props.id,
+    type: "radio",
+    onChange: () => props.setFieldValue(field.name, item)
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: props.id + item
+  }, props.options[item]))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "desc"
+  }, props.desc)));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Radio);
 
 /***/ }),
 

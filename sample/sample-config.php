@@ -42,6 +42,28 @@ function wprs_add_settings_fields($fields)
                     'default' => 'Deo', // 1 = on | 0 = off
                 ),
                 array(
+                    'id' => 'checkboxxx',
+                    'type' => 'checkbox',
+                    'title' => __('Checkbox Testing', 'wprs'),
+                    'subtitle' => __('No validation can be done on this field type', 'wprs'),
+                    'desc' => __('This is the description field, again good for additional info.', 'wprs'),
+                    'default' => true, // 1 = on | 0 = off
+                ),
+                array(
+                    'id'       => 'opt-radio',
+                    'type'     => 'radio',
+                    'title'    => __( 'Radio Option', 'redux-framework-demo' ),
+                    'subtitle' => __( 'No validation can be done on this field type', 'redux-framework-demo' ),
+                    'desc'     => __( 'This is the description field, again good for additional info.', 'redux-framework-demo' ),
+                    //Must provide key => value pairs for radio options
+                    'options'  => array(
+                        '1' => 'Opt 1',
+                        '2' => 'Opt 2',
+                        '3' => 'Opt 3'
+                    ),
+                    'default'  => '2'
+                ),
+                array(
                     'id' => 'email',
                     'type' => 'email',
                     'title' => __('Email', 'wprs'),
