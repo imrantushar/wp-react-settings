@@ -4,9 +4,9 @@ function wprs_add_settings_fields($fields)
 {
     return array(
         array(
-            'title'            => __( 'Basic Fields', 'wprs' ),
+            'title'            => __('Basic Fields', 'wprs'),
             'id'               => 'normal',
-            'desc'             => __( 'These are really basic fields!', 'wprs' ),
+            'desc'             => __('These are really basic fields!', 'wprs'),
             'customizer_width' => '400px',
             'icon'             => 'el el-home',
             'fields' => array(
@@ -16,7 +16,7 @@ function wprs_add_settings_fields($fields)
                     'title' => __('First Name', 'wprs'),
                     'subtitle' => __('No validation can be done on this field type', 'wprs'),
                     'desc' => __('This is the description field, again good for additional info.', 'wprs'),
-                    'default' => 'john', 
+                    'default' => 'john',
                 ),
                 array(
                     'id' => 'info',
@@ -24,7 +24,7 @@ function wprs_add_settings_fields($fields)
                     'title' => __('Info', 'wprs'),
                     'subtitle' => __('No validation can be done on this field type', 'wprs'),
                     'desc' => __('This is the description field, again good for additional info.', 'wprs'),
-                    'default' => 'john', 
+                    'default' => 'john',
                 )
             ),
         ),
@@ -52,16 +52,16 @@ function wprs_add_settings_fields($fields)
                 array(
                     'id'       => 'opt-radio',
                     'type'     => 'radio',
-                    'title'    => __( 'Radio Option', 'redux-framework-demo' ),
-                    'subtitle' => __( 'No validation can be done on this field type', 'redux-framework-demo' ),
-                    'desc'     => __( 'This is the description field, again good for additional info.', 'redux-framework-demo' ),
+                    'title'    => __('Radio Option', 'redux-framework-demo'),
+                    'subtitle' => __('No validation can be done on this field type', 'redux-framework-demo'),
+                    'desc'     => __('This is the description field, again good for additional info.', 'redux-framework-demo'),
                     //Must provide key => value pairs for radio options
                     'options'  => array(
                         '1' => 'Opt 1',
                         '2' => 'Opt 2',
                         '3' => 'Opt 3'
                     ),
-                    'default'  => '2'
+                    'default'  => '2',
                 ),
                 array(
                     'id' => 'email',
@@ -70,6 +70,10 @@ function wprs_add_settings_fields($fields)
                     'subtitle' => __('No validation can be done on this field type', 'wprs'),
                     'desc' => __('This is the description field, again good for additional info.', 'wprs'),
                     'default' => 'example@gmail.com', // 1 = on | 0 = off
+                    'condition'   => [
+                        'lastName'  => '',
+                        'checkboxxx'  => false
+                    ]
                 ),
             ),
         ),
