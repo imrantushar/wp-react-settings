@@ -6,6 +6,7 @@ import Checkbox from './type/Checkbox'
 import Radio from './type/Radio'
 import Email from './type/Email'
 import Error from './type/Error'
+import Select from './type/Select'
 
 const Fields = (props) => {
     // console.log(Object.is(props.values, props.condition))
@@ -20,6 +21,8 @@ const Fields = (props) => {
         renderComponent = <Checkbox {...props} />
     } else if (props.type === 'radio') {
         renderComponent = <Radio {...props} />
+    } else if (props.type === 'select') {
+        renderComponent = <Select {...props} />
     } else {
         renderComponent = <Error {...props} />
     }

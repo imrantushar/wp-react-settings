@@ -75,6 +75,19 @@ function wprs_add_settings_fields($fields)
                         'checkboxxx'  => false
                     ]
                 ),
+                array(
+                    'id' => 'colorselect',
+                    'type' => 'select',
+                    'title' => __('Select', 'wprs'),
+                    'subtitle' => __('No validation can be done on this field type', 'wprs'),
+                    'desc' => __('This is the description field, again good for additional info.', 'wprs'),
+                    'default' => 'abc',
+                    'options' => [
+                        'red'   => 'red color',
+                        'yellow' => 'Yellow Color',
+                        'blue'   => 'Blue Color'
+                    ]
+                ),
             ),
         ),
     );

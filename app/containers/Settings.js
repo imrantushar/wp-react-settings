@@ -55,18 +55,19 @@ const Settings = ({ wpObject }) => {
                             </TabList>
                             {wpObject.settings.map((item, index) => (
                                 <TabPanel key={index}>
-                                    {item.fields.map(
-                                        (fieldItem, fieldIndex) => (
-                                            <Fields
-                                                {...fieldItem}
-                                                setFieldValue={
-                                                    props.setFieldValue
-                                                } // formik
-                                                key={fieldIndex}
-                                                values={props.values}
-                                            />
-                                        )
-                                    )}
+                                    {Object.keys(props.values).length > 0 &&
+                                        item.fields.map(
+                                            (fieldItem, fieldIndex) => (
+                                                <Fields
+                                                    {...fieldItem}
+                                                    setFieldValue={
+                                                        props.setFieldValue
+                                                    } // formik
+                                                    key={fieldIndex}
+                                                    values={props.values}
+                                                />
+                                            )
+                                        )}
                                 </TabPanel>
                             ))}
                         </Tabs>
