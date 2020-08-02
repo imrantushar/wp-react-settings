@@ -103,4 +103,4 @@ dist
 # TernJS port file
 .tern-port
 
-admin/admin.js.map
+assets/js/admin.js.map
