@@ -1,4 +1,5 @@
 <?php
+
 namespace WPRS\INC;
 
 final class Plugin
@@ -34,6 +35,7 @@ final class Plugin
     {
         include plugin_dir_path(__FILE__) . 'Admin.php';
         include plugin_dir_path(__FILE__) . 'rest-api/Endpoint.php';
+        include plugin_dir_path(__FILE__) . 'Builder.php';
         include wp_REACT_SETTINGS_ROOT_DIR . 'sample/sample-config.php';
     }
 
@@ -53,26 +55,28 @@ final class Plugin
      * Define WPRS Constant
      * @since 1.0.0
      */
-    private function define_constants() {
-        $this->define( 'WP_REACT_SETTINGS_VERSION', '1.0.0' );
-        $this->define( 'WP_REACT_SETTINGS_SLUG', 'wp-react-settings' );
-        $this->define( 'wp_REACT_SETTINGS_ROOT_DIR', plugin_dir_path(WP_REACT_SETTINGS_MAIN_FILE_PATH) );
-        $this->define( 'WP_REACT_SETTINGS_BASE_NAME', plugin_basename(WP_REACT_SETTINGS_MAIN_FILE_PATH) );
+    private function define_constants()
+    {
+        $this->define('WP_REACT_SETTINGS_VERSION', '1.0.0');
+        $this->define('WP_REACT_SETTINGS_SLUG', 'wp-react-settings');
+        $this->define('wp_REACT_SETTINGS_ROOT_DIR', plugin_dir_path(WP_REACT_SETTINGS_MAIN_FILE_PATH));
+        $this->define('WP_REACT_SETTINGS_BASE_NAME', plugin_basename(WP_REACT_SETTINGS_MAIN_FILE_PATH));
     }
 
 
     /**
-	 * Define constant if not already set.
-	 *
-	 * @param string      $name  Constant name.
-	 * @param string|bool $value Constant value.
+     * Define constant if not already set.
+     *
+     * @param string      $name  Constant name.
+     * @param string|bool $value Constant value.
      * @since 1.0.0
-	 */
-	private function define( $name, $value ) {
-		if ( ! defined( $name ) ) {
-			define( $name, $value );
-		}
-	}
+     */
+    private function define($name, $value)
+    {
+        if (!defined($name)) {
+            define($name, $value);
+        }
+    }
 
 
 

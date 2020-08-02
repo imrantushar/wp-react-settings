@@ -1,4 +1,5 @@
 <?php
+
 namespace WPRS\INC;
 
 class Admin
@@ -63,7 +64,7 @@ class Admin
         $this->plugin_slug = WP_REACT_SETTINGS_SLUG;
         $this->version = WP_REACT_SETTINGS_VERSION;
         $this->settings_name = apply_filters('wprs_settings_name', 'wprs_simple_setting');
-        $this->setting_array = apply_filters('wprs_settings', array());
+        $this->setting_array = apply_filters('wprs_settings', Builder::load());
         $this->do_hooks();
     }
 
@@ -126,8 +127,7 @@ class Admin
                 'api_nonce' => wp_create_nonce('wp_rest'),
                 'api_url' => rest_url($this->plugin_slug . '/v1/'),
                 'settings' => $this->setting_array,
-            )
-            );
+            ));
         }
     }
 
@@ -157,41 +157,41 @@ class Admin
      */
     public function display_plugin_admin_page()
     {
-        ?><div id="wprs-admin-root" class="wprs-admin-root"></div><?php
-}
+?><div id="wprs-admin-root" class="wprs-admin-root"></div><?php
+                                                        }
 
-    /**
-     * Add settings action link to the plugins page.
-     *
-     * @since    1.0.0
-     */
-    public function add_action_links($links)
-    {
-        return array_merge(
-            array(
-                'settings' => '<a href="' . admin_url('options-general.php?page=' . $this->plugin_slug) . '">' . __('Settings', $this->plugin_slug) . '</a>',
-            ),
-            $links
-        );
-    }
+                                                        /**
+                                                         * Add settings action link to the plugins page.
+                                                         *
+                                                         * @since    1.0.0
+                                                         */
+                                                        public function add_action_links($links)
+                                                        {
+                                                            return array_merge(
+                                                                array(
+                                                                    'settings' => '<a href="' . admin_url('options-general.php?page=' . $this->plugin_slug) . '">' . __('Settings', $this->plugin_slug) . '</a>',
+                                                                ),
+                                                                $links
+                                                            );
+                                                        }
 
-    /**
-     * Set default settings data in database
-     * 
-     * @return null save option in database
-     * 
-     * @since 1.0.0
-     */
-    public function set_default_settings_fields_data()
-    {
-        $list_column = array_column($this->setting_array, 'fields');
-        $list_array = array_merge(...$list_column);
-        $new_value = \json_encode(wp_list_pluck($list_array, 'default', 'id'));
+                                                        /**
+                                                         * Set default settings data in database
+                                                         * 
+                                                         * @return null save option in database
+                                                         * 
+                                                         * @since 1.0.0
+                                                         */
+                                                        public function set_default_settings_fields_data()
+                                                        {
+                                                            $list_column = array_column($this->setting_array, 'fields');
+                                                            $list_array = array_merge(...$list_column);
+                                                            $new_value = \json_encode(wp_list_pluck($list_array, 'default', 'id'));
 
-        if (get_option($this->settings_name) !== false) {
-            update_option($this->settings_name, $new_value);
-        } else {
-            add_option($this->settings_name, $new_value);
-        }
-    }
-}
+                                                            if (get_option($this->settings_name) !== false) {
+                                                                update_option($this->settings_name, $new_value);
+                                                            } else {
+                                                                add_option($this->settings_name, $new_value);
+                                                            }
+                                                        }
+                                                    }
