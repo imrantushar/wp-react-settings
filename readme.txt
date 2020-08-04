@@ -12,4 +12,4 @@ WP React Settings is a simple options framework for WordPress themes and plugins
 
 == Description ==
 
-WP React Settings options framework is build with reactjs. Some more feature will be comming soon. stay with me and give your feedback.
+WP React Settings options framework is build with reactjs. Some exciting features are coming soon. stay with me and give your feedback.

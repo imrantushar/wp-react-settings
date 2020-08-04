@@ -175,8 +175,8 @@ class Admin
      */
     public function add_action_links($links)
     {
-        $links['settings'] = '<a href="' . admin_url('options-general.php?page=' . $this->plugin_slug) . '">' . __('Settings', $this->plugin_slug) . '</a>';
         if (get_transient('wprs_demo_is_active')) {
+            $links['settings'] = '<a href="' . admin_url('options-general.php?page=' . $this->plugin_slug) . '">' . __('Settings', $this->plugin_slug) . '</a>';
             $links['active_demo_mode'] = '<a href="' . esc_url(admin_url('plugins.php?wprs_demo_active=0')) . '" style="color: #dc3232;">' . __('Deactivate Demo', $this->plugin_slug) . '</a>';
         } else {
             $links['active_demo_mode'] = '<a href="' . esc_url(admin_url('plugins.php?wprs_demo_active=1')) . '" style="color: rgb(0, 124, 186);">' . __('Active Demo', $this->plugin_slug) . '</a>';

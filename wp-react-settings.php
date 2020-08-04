@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Plugin Name:       WP-React-Settings
+ * Plugin Name:       WP React Settings
  * Plugin URI:        https://itushar.me/wp-react-settings
- * Description:       A Simple wordpress settings option based on Reactjs
+ * Description:       A Simple WordPress Option Settings Based On Reactjs
  * Version:           0.1
  * Author:            Tushar Imran
  * Author URI:        https://itushar.me/
