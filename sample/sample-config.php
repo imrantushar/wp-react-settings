@@ -1,4 +1,12 @@
 <?php
+// set option name
+add_filter('wprs_settings_name', 'wprs_set_settings_option_name');
+function wprs_set_settings_option_name()
+{
+    return 'wprs_simple_demo';
+}
+
+// build settings
 WPRS\INC\Builder::add_tab([
     'title'            => __('Basic Fields', 'wprs'),
     'id'               => 'basic_fields',
