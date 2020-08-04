@@ -141,7 +141,7 @@ class Admin
         /*
          * Add a settings page for this plugin to the Settings menu.
          */
-        $this->plugin_screen_hook_suffix = add_options_page(
+        $this->plugin_screen_hook_suffix = add_menu_page(
             __('WP React Settings', $this->plugin_slug),
             __('WP React Settings', $this->plugin_slug),
             'manage_options',

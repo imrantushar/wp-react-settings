@@ -1,38 +1,88 @@
 <?php
 WPRS\INC\Builder::add_tab([
     'title'            => __('Basic Fields', 'wprs'),
-    'id'               => 'normal',
-    'desc'             => __('These are really basic fields!', 'wprs'),
-    'customizer_width' => '400px',
-    'icon'             => 'el el-home',
+    'id'               => 'basic_fields',
 ]);
-WPRS\INC\Builder::add_field('normal', [
-    'id' => 'firstName',
+WPRS\INC\Builder::add_field('basic_fields', [
+    'id' => 'textfield',
     'type' => 'text',
-    'title' => __('First Name', 'wprs'),
-    'subtitle' => __('No validation can be done on this field type', 'wprs'),
-    'desc' => __('This is the description field, again good for additional info.', 'wprs'),
-    'default' => 'john',
+    'title' => __('Text', 'wprs'),
+    'subtitle' => __('Field Sub Title', 'wprs'),
+    'desc' => __('Field Description', 'wprs'),
+    'default' => 'Default Text',
 ]);
-WPRS\INC\Builder::add_field('normal', [
-    'id' => 'info',
+WPRS\INC\Builder::add_field('basic_fields', [
+    'id' => 'emailfield',
+    'type' => 'email',
+    'title' => __('Email', 'wprs'),
+    'subtitle' => __('Field Sub Title', 'wprs'),
+    'desc' => __('Field Description', 'wprs'),
+    'default' => 'someone@example.com',
+]);
+WPRS\INC\Builder::add_field('basic_fields', [
+    'id' => 'textareafield',
     'type' => 'textarea',
-    'title' => __('Info', 'wprs'),
-    'subtitle' => __('No validation can be done on this field type', 'wprs'),
-    'desc' => __('This is the description field, again good for additional info.', 'wprs'),
-    'default' => 'john',
+    'title' => __('Textarea', 'wprs'),
+    'subtitle' => __('Field Sub Title', 'wprs'),
+    'desc' => __('Field Description', 'wprs'),
+    'default' => 'Default Textarea',
 ]);
+WPRS\INC\Builder::add_field('basic_fields', [
+    'id' => 'checkboxfield',
+    'type' => 'checkbox',
+    'title' => __('Checkbox', 'wprs'),
+    'subtitle' => __('Field Sub Title', 'wprs'),
+    'desc' => __('Field Description', 'wprs'),
+    'default' => true, // 1 = on | 0 = off
+]);
+WPRS\INC\Builder::add_field('basic_fields', [
+    'id'       => 'radiofield',
+    'type'     => 'radio',
+    'title'    => __('Radio', 'rwprs'),
+    'subtitle' => __('Field Sub Title', 'wprs'),
+    'desc' => __('Field Description', 'wprs'),
+    'options'  => array(
+        '1' => 'Opt 1',
+        '2' => 'Opt 2',
+        '3' => 'Opt 3'
+    ),
+    'default'  => '2',
+]);
+WPRS\INC\Builder::add_field('basic_fields', [
+    'id' => 'selectfield',
+    'type' => 'select',
+    'title' => __('Select', 'wprs'),
+    'subtitle' => __('Field Sub Title', 'wprs'),
+    'desc' => __('Field Description', 'wprs'),
+    'default' => 'yellow',
+    'options' => [
+        'red'   => 'red color',
+        'yellow' => 'Yellow Color',
+        'blue'   => 'Blue Color'
+    ]
+]);
+
 // second tab
 WPRS\INC\Builder::add_tab([
-    'title' => __('Sub Section', 'wprs'),
-    'id' => 'basic',
-    'icon' => 'el el-home',
+    'title' => __('Conditional Fields', 'wprs'),
+    'id' => 'conditional_fields',
 ]);
-WPRS\INC\Builder::add_field('basic', [
-    'id' => 'lastName',
-    'type' => 'text',
-    'title' => __('Last Name', 'wprs'),
-    'subtitle' => __('No validation can be done on this field type', 'wprs'),
-    'desc' => __('This is the description field, again good for additional info.', 'wprs'),
-    'default' => 'Deo', // 1 = on | 0 = off
+WPRS\INC\Builder::add_field('conditional_fields', [
+    'id' => 'showuserbio',
+    'type' => 'checkbox',
+    'title' => __('Show User Bio', 'wprs'),
+    'subtitle' => __('Field Sub Title', 'wprs'),
+    'desc' => __('Field Description', 'wprs'),
+    'default' => false,
+]);
+WPRS\INC\Builder::add_field('conditional_fields', [
+    'id' => 'userbioinfo',
+    'type' => 'textarea',
+    'title' => __('Textarea', 'wprs'),
+    'subtitle' => __('Field Sub Title', 'wprs'),
+    'desc' => __('Field Description', 'wprs'),
+    'default' => 'lorem ipsum dolor',
+    'condition' => [
+        'showuserbio'   => false
+    ]
 ]);
