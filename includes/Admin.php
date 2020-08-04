@@ -4,7 +4,7 @@ namespace WPRS\INC;
 
 class Admin
 {
-
+    private $active_demo_mode = false;
     /**
      * Instance of this class.
      *
@@ -63,6 +63,7 @@ class Admin
     {
         $this->plugin_slug = WP_REACT_SETTINGS_SLUG;
         $this->version = WP_REACT_SETTINGS_VERSION;
+        $this->active_demo_mode = get_transient('wprs_demo_is_active');
         $this->settings_name = apply_filters('wprs_settings_name', 'wprs_setting');
         $this->setting_array = apply_filters('wprs_settings', Builder::load());
         $this->do_hooks();
@@ -85,6 +86,11 @@ class Admin
         // Add plugin action link point to settings page
         add_filter('plugin_action_links_' . WP_REACT_SETTINGS_BASE_NAME, array($this, 'add_action_links'));
         register_activation_hook(WP_REACT_SETTINGS_MAIN_FILE_PATH, array($this, 'set_default_settings_fields_data'));
+
+        add_action('admin_init', array($this, 'active_demo_mode'));
+        if (!$this->active_demo_mode) {
+            remove_action('admin_menu', array($this, 'add_plugin_admin_menu'));
+        }
     }
 
     /**
@@ -169,12 +175,13 @@ class Admin
      */
     public function add_action_links($links)
     {
-        return array_merge(
-            array(
-                'settings' => '<a href="' . admin_url('options-general.php?page=' . $this->plugin_slug) . '">' . __('Settings', $this->plugin_slug) . '</a>',
-            ),
-            $links
-        );
+        $links['settings'] = '<a href="' . admin_url('options-general.php?page=' . $this->plugin_slug) . '">' . __('Settings', $this->plugin_slug) . '</a>';
+        if (get_transient('wprs_demo_is_active')) {
+            $links['active_demo_mode'] = '<a href="' . esc_url(admin_url('plugins.php?wprs_demo_active=0')) . '" style="color: #dc3232;">' . __('Deactivate Demo', $this->plugin_slug) . '</a>';
+        } else {
+            $links['active_demo_mode'] = '<a href="' . esc_url(admin_url('plugins.php?wprs_demo_active=1')) . '" style="color: rgb(0, 124, 186);">' . __('Active Demo', $this->plugin_slug) . '</a>';
+        }
+        return $links;
     }
 
     /**
@@ -194,6 +201,22 @@ class Admin
             update_option($this->settings_name, $new_value);
         } else {
             add_option($this->settings_name, $new_value);
+        }
+    }
+
+    public function active_demo_mode()
+    {
+        $demo  = (isset($_GET['wprs_demo_active']) ? $_GET['wprs_demo_active'] : 0);
+        if ($demo) {
+            if (get_transient('wprs_demo_is_active') === false) {
+                set_transient('wprs_demo_is_active', true);
+                wp_redirect('plugins.php');
+                exit;
+            }
+        } else if (isset($_GET['wprs_demo_active']) && $demo == 0) {
+            delete_transient('wprs_demo_is_active');
+            wp_redirect('plugins.php');
+            exit;
         }
     }
 }

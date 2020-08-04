@@ -1,11 +1,12 @@
 <?php
+
 /**
  * Plugin Name:       WP-React-Settings
- * Plugin URI:        itushar.me/wp-react-settings
- * Description:       A Simple wordpress option framework
- * Version:           0.0.0
+ * Plugin URI:        https://itushar.me/wp-react-settings
+ * Description:       A Simple wordpress settings option based on Reactjs
+ * Version:           0.1
  * Author:            Tushar Imran
- * Author URI:        https://gopangolin.com
+ * Author URI:        https://itushar.me/
  * Text Domain:       wprs
  */
 

@@ -36,7 +36,9 @@ final class Plugin
         include plugin_dir_path(__FILE__) . 'Admin.php';
         include plugin_dir_path(__FILE__) . 'rest-api/Endpoint.php';
         include plugin_dir_path(__FILE__) . 'Builder.php';
-        include wp_REACT_SETTINGS_ROOT_DIR . 'sample/sample-config.php';
+        if (get_transient('wprs_demo_is_active')) {
+            include wp_REACT_SETTINGS_ROOT_DIR . 'sample/sample-config.php';
+        }
     }
 
     /**
