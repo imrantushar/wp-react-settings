@@ -36,9 +36,7 @@ final class Plugin
         include plugin_dir_path(__FILE__) . 'Admin.php';
         include plugin_dir_path(__FILE__) . 'rest-api/Endpoint.php';
         include plugin_dir_path(__FILE__) . 'Builder.php';
-        if (get_transient('wprs_demo_is_active')) {
-            include wp_REACT_SETTINGS_ROOT_DIR . 'sample/sample-config.php';
-        }
+        include WP_REACT_SETTINGS_ROOT_DIR . 'sample/sample-config.php';
     }
 
     /**
@@ -52,7 +50,6 @@ final class Plugin
         RESTAPI\Endpoint::get_instance();
     }
 
-
     /**
      * Define WPRS Constant
      * @since 1.0.0
@@ -61,10 +58,9 @@ final class Plugin
     {
         $this->define('WP_REACT_SETTINGS_VERSION', '1.0.0');
         $this->define('WP_REACT_SETTINGS_SLUG', 'wp-react-settings');
-        $this->define('wp_REACT_SETTINGS_ROOT_DIR', plugin_dir_path(WP_REACT_SETTINGS_MAIN_FILE_PATH));
+        $this->define('WP_REACT_SETTINGS_ROOT_DIR', plugin_dir_path(WP_REACT_SETTINGS_MAIN_FILE_PATH));
         $this->define('WP_REACT_SETTINGS_BASE_NAME', plugin_basename(WP_REACT_SETTINGS_MAIN_FILE_PATH));
     }
-
 
     /**
      * Define constant if not already set.
@@ -79,8 +75,6 @@ final class Plugin
             define($name, $value);
         }
     }
-
-
 
     /**
      * Return an instance of this class.

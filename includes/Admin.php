@@ -85,8 +85,6 @@ class Admin
 
         // Add plugin action link point to settings page
         add_filter('plugin_action_links_' . WP_REACT_SETTINGS_BASE_NAME, array($this, 'add_action_links'));
-        register_activation_hook(WP_REACT_SETTINGS_MAIN_FILE_PATH, array($this, 'set_default_settings_fields_data'));
-
         add_action('admin_init', array($this, 'active_demo_mode'));
         if (!$this->active_demo_mode) {
             remove_action('admin_menu', array($this, 'add_plugin_admin_menu'));
@@ -163,10 +161,10 @@ class Admin
      */
     public function display_plugin_admin_page()
     {
-?>
+        ?>
         <div id="wprs-admin-root" class="wprs-admin-root"></div>
 <?php
-    }
+}
 
     /**
      * Add settings action link to the plugins page.
@@ -186,9 +184,9 @@ class Admin
 
     /**
      * Set default settings data in database
-     * 
+     *
      * @return null save option in database
-     * 
+     *
      * @since 1.0.0
      */
     public function set_default_settings_fields_data()
@@ -206,10 +204,11 @@ class Admin
 
     public function active_demo_mode()
     {
-        $demo  = (isset($_GET['wprs_demo_active']) ? $_GET['wprs_demo_active'] : 0);
+        $demo = (isset($_GET['wprs_demo_active']) ? $_GET['wprs_demo_active'] : 0);
         if ($demo) {
             if (get_transient('wprs_demo_is_active') === false) {
                 set_transient('wprs_demo_is_active', true);
+                $this->set_default_settings_fields_data();
                 wp_redirect('plugins.php');
                 exit;
             }
