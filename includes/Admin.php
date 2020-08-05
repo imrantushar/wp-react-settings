@@ -146,8 +146,8 @@ class Admin
          * Add a settings page for this plugin to the Settings menu.
          */
         $this->plugin_screen_hook_suffix = add_menu_page(
-            __('WP React Settings', $this->plugin_slug),
-            __('WP React Settings', $this->plugin_slug),
+            __('WP React Settings', 'wp-react-settings'),
+            __('WP React Settings', 'wp-react-settings'),
             'manage_options',
             $this->plugin_slug,
             array($this, 'display_plugin_admin_page')
@@ -174,10 +174,10 @@ class Admin
     public function add_action_links($links)
     {
         if (get_transient('wprs_demo_is_active')) {
-            $links['settings'] = '<a href="' . admin_url('options-general.php?page=' . $this->plugin_slug) . '">' . __('Settings', $this->plugin_slug) . '</a>';
-            $links['active_demo_mode'] = '<a href="' . esc_url(admin_url('plugins.php?wprs_demo_active=0')) . '" style="color: #dc3232;">' . __('Deactivate Demo', $this->plugin_slug) . '</a>';
+            $links['settings'] = '<a href="' . admin_url('options-general.php?page=' . $this->plugin_slug) . '">' . __('Settings', 'wp-react-settings') . '</a>';
+            $links['active_demo_mode'] = '<a href="' . esc_url(admin_url('plugins.php?wprs_demo_active=0')) . '" style="color: #dc3232;">' . __('Deactivate Demo', 'wp-react-settings') . '</a>';
         } else {
-            $links['active_demo_mode'] = '<a href="' . esc_url(admin_url('plugins.php?wprs_demo_active=1')) . '" style="color: rgb(0, 124, 186);">' . __('Active Demo', $this->plugin_slug) . '</a>';
+            $links['active_demo_mode'] = '<a href="' . esc_url(admin_url('plugins.php?wprs_demo_active=1')) . '" style="color: rgb(0, 124, 186);">' . __('Active Demo', 'wp-react-settings') . '</a>';
         }
         return $links;
     }

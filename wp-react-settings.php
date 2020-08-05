@@ -7,7 +7,7 @@
  * Version:           0.1
  * Author:            Tushar Imran
  * Author URI:        https://itushar.me/
- * Text Domain:       wprs
+ * Text Domain:       wp-react-settings
  */
 
 // If this file is called directly, abort.
