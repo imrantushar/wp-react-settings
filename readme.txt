@@ -1,4 +1,3 @@
-=== Essential Addons for Elementor ===
 Contributors: tusharimran
 Tags: admin, admin interface, options, theme options, plugin options, options framework, settings, settings option, option, reactjs
 Requires at least: 4.0
