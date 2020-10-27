@@ -26,6 +26,17 @@ class Builder
         return self::$fields[$tabname][]  = $fields;
     }
 
+    // group
+    public static function add_group($tab, $group)
+    {
+        self::$tabs[$tab]['group'][$group['id']] = $group;
+    }
+    public static function add_group_field($tab, $group_id, $fields)
+    {
+        return self::$tabs[$tab]['group'][$group_id]['fields'][]  = $fields;
+    }
+
+
     public static function build_settings($tabs, $fields)
     {
         foreach ($fields as $key => $value) {

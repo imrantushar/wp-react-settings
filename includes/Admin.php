@@ -161,10 +161,10 @@ class Admin
      */
     public function display_plugin_admin_page()
     {
-        ?>
+?>
         <div id="wprs-admin-root" class="wprs-admin-root"></div>
 <?php
-}
+    }
 
     /**
      * Add settings action link to the plugins page.
@@ -191,14 +191,36 @@ class Admin
      */
     public function set_default_settings_fields_data()
     {
-        $list_column = array_column($this->setting_array, 'fields');
-        $list_array = array_merge(...$list_column);
-        $new_value = \json_encode(wp_list_pluck($list_array, 'default', 'id'));
+        $this->setting_array =  Builder::load();
+        $field = array();
+        foreach ($this->setting_array as $setting_item) {
+            if (!isset($setting_item['group'])) {
+                //normal field
+                if (isset($setting_item['fields'])) {
+                    foreach ($setting_item['fields'] as $fieldItem) {
+                        $field[$fieldItem['id']] = $fieldItem['default'];
+                    }
+                }
+            } else {
+                // group field
+                foreach ($setting_item['group'] as $groupKey => $groupItem) {
+                    $group = [];
+                    if (isset($groupItem['fields'])) {
+                        foreach ($groupItem['fields'] as $groupField) {
+                            $group[][$groupField['id']] = (isset($groupField['default']) ? $groupField['default'] : '');
+                        }
+                    }
+                    $field[$setting_item['id']][$groupKey] = $group;
+                }
+            }
+        }
 
         if (get_option($this->settings_name) !== false) {
-            update_option($this->settings_name, $new_value);
+            $defaults = json_decode(get_option($this->settings_name), true);
+            $args = wp_parse_args($defaults, $field);
+            update_option($this->settings_name, json_encode($args));
         } else {
-            add_option($this->settings_name, $new_value);
+            add_option($this->settings_name, json_encode($field));
         }
     }
 

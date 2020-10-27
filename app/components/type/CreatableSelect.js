@@ -1,8 +1,8 @@
 import React from 'react'
+import CreatableSelect2 from 'react-select/creatable'
 import { useField } from 'formik'
-import Select2 from 'react-select'
 
-const Select = ({
+const CreatableSelect = ({
     id,
     title,
     subtitle,
@@ -17,7 +17,7 @@ const Select = ({
         label: value,
     }))
 
-    const onChange = (option) => {
+    const onChange = (option, actionMeta) => {
         if (option == null) {
             return setFieldValue(field.name, '')
         }
@@ -27,15 +27,10 @@ const Select = ({
         )
     }
     const getValue = () => {
-        if (modifiedOptions) {
-            return multiple
-                ? modifiedOptions.filter(
-                      (option) => field.value.indexOf(option.value) >= 0
-                  )
-                : modifiedOptions.find((option) => option.value === field.value)
-        } else {
-            return multiple ? [] : ''
-        }
+        return Object.entries(field.value).map(([key, value]) => ({
+            value: value,
+            label: value,
+        }))
     }
     return (
         <div className='form-group'>
@@ -44,7 +39,8 @@ const Select = ({
                 <span className='sub-title'>{subtitle}</span>
             </div>
             <div className='form-body'>
-                <Select2
+                <CreatableSelect2
+                    isClearable
                     id={field.id}
                     name={field.name}
                     value={getValue()}
@@ -58,4 +54,4 @@ const Select = ({
     )
 }
 
-export default Select
+export default CreatableSelect
