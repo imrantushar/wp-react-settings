@@ -1,24 +1,21 @@
 <?php
 
-namespace WPRS\INC;
+namespace WPRS\SETTINGS;
 
 class Builder
 {
     public static $tabs = array();
     public static $fields = array();
-    public static function load()
+    public static function get_settings_array()
     {
         return self::build_settings(self::$tabs, self::$fields);
     }
 
     public static function add_tab($tab)
     {
-        // Bail if not array.
         if (!is_array($tab)) {
             return false;
         }
-
-        // Assign to the tabs array
         return self::$tabs[$tab['id']] = $tab;
     }
     public static function add_field($tabname, $fields)
