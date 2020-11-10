@@ -1,6 +1,6 @@
 <?php
 
-namespace WPRS\SETTINGS;
+namespace WPRS;
 
 trait Config
 {

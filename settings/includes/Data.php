@@ -1,13 +1,17 @@
 <?php
 
-namespace WPRS\SETTINGS;
+namespace WPRS;
 
 class Data
 {
-    public $setting_array = [];
+    use Config;
 
-    public function __construct()
+    public $setting_array = [];
+    public $settings;
+
+    public function __construct($settings)
     {
+        $this->setting_array =  $settings;
     }
     /**
      * Set default settings data in database
@@ -18,7 +22,6 @@ class Data
      */
     public function save_option_value()
     {
-        $this->setting_array =  Builder::load();
         $field = array();
         foreach ($this->setting_array as $setting_item) {
             if (!isset($setting_item['group'])) {

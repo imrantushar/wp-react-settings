@@ -1,10 +1,4 @@
 <?php
-// set option name
-add_filter('wprs_settings_name', 'wprs_set_settings_option_name');
-function wprs_set_settings_option_name()
-{
-    return 'wprs_simple_demo';
-}
 
 add_action('wprs_build_settings', 'wprs_build_settings_callback');
 function wprs_build_settings_callback($config)

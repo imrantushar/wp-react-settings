@@ -1,11 +1,16 @@
 <?php
 
-namespace WPRS\SETTINGS;
+namespace WPRS;
 
 class Assets
 {
-    public function __construct()
+    use Config;
+
+    public $setting_array = [];
+
+    public function __construct($settings)
     {
+        $this->setting_array =  $settings;
         add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_styles'));
         add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_scripts'));
     }
@@ -35,7 +40,7 @@ class Assets
         wp_localize_script($this->pageSlug . '-admin-script', 'wpr_object', array(
             'api_nonce' => wp_create_nonce('wp_rest'),
             'api_url' => rest_url($this->pageSlug . '/v1/'),
-            'settings' => $this->setting,
+            'settings' => $this->setting_array,
         ));
     }
 }

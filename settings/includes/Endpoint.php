@@ -1,8 +1,6 @@
 <?php
 
-namespace WPRS\SETTINGS;
-
-use WPRS\SETTINGS\Config;
+namespace WPRS;
 
 
 class Endpoint

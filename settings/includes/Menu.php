@@ -1,18 +1,16 @@
 <?php
 
-namespace WPRS\SETTINGS;
+namespace WPRS;
 
-use WPRS\SETTINGS\Config;
 
 class Menu
 {
     use Config;
 
-    public function init()
+    public function __construct()
     {
         add_action('admin_menu', array($this, 'add_plugin_admin_menu'));
     }
-
     /**
      * Register the administration menu for this plugin into the WordPress Dashboard menu.
      *

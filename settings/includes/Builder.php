@@ -1,12 +1,13 @@
 <?php
 
-namespace WPRS\SETTINGS;
+namespace WPRS;
 
 class Builder
 {
     public static $tabs = array();
     public static $fields = array();
-    public static function get_settings_array()
+
+    public static function get_settings()
     {
         return self::build_settings(self::$tabs, self::$fields);
     }

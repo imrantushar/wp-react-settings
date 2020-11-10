@@ -21,8 +21,8 @@ if (!defined('WPINC')) {
  * @since 1.0.0
  */
 
-include plugin_dir_path(__FILE__) . 'includes/Plugin.php';
-include plugin_dir_path(__FILE__) . 'simple/config.php';
+include plugin_dir_path(__FILE__) . 'settings/Settings.php';
+include plugin_dir_path(__FILE__) . 'demo/demo.php';
 
 /**
  * Initialize Plugin
@@ -31,13 +31,13 @@ include plugin_dir_path(__FILE__) . 'simple/config.php';
  */
 function WPRS_Plugin_Core_Loaded()
 {
-    return WPRS\Plugin::get_instance();
+    return new Settings;
 }
 WPRS_Plugin_Core_Loaded();
 
 
 function WPRS_Plugin_Core_Activated()
 {
-    do_action('wprs_save_default_option_value');
+    do_action('wprs_save_default_settings');
 }
 register_activation_hook(__FILE__, 'WPRS_Plugin_Core_Activated');
