@@ -5,12 +5,17 @@ namespace WPRS;
 
 class Endpoint
 {
-    use Config;
+    protected $slug;
+    protected $option;
+    protected $api_version;
     /**
      * Initialize hooks and option name
      */
-    public function __construct()
+    public function __construct($slug, $option_name, $api_version)
     {
+        $this->slug = $slug;
+        $this->option = $option_name;
+        $this->version = $api_version;
         add_action('rest_api_init', array($this, 'register_routes'));
     }
 
@@ -19,7 +24,7 @@ class Endpoint
      */
     public function register_routes()
     {
-        $namespace = $this->pageSlug . '/v' . $this->version;
+        $namespace = $this->slug . '/v' . $this->version;
         $endpoint = '/wprs/';
 
         register_rest_route($namespace, $endpoint, array(

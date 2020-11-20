@@ -4,8 +4,6 @@ namespace WPRS;
 
 class Data
 {
-    use Config;
-
     public $setting_array = [];
     public $settings;
 

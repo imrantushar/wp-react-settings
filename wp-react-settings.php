@@ -31,7 +31,7 @@ include plugin_dir_path(__FILE__) . 'demo/demo.php';
  */
 function WPRS_Plugin_Core_Loaded()
 {
-    return new Settings;
+    return new Settings('WP React Settings', 'wp-react-settings', 'wprs_settings', 1, true);
 }
 WPRS_Plugin_Core_Loaded();
 

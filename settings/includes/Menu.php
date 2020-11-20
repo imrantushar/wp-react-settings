@@ -5,10 +5,12 @@ namespace WPRS;
 
 class Menu
 {
-    use Config;
-
-    public function __construct()
+    protected $pageTitle;
+    protected $pageSlug;
+    public function __construct($title, $slug)
     {
+        $this->pageTitle = $title;
+        $this->pageSlug = $slug;
         add_action('admin_menu', array($this, 'add_plugin_admin_menu'));
     }
     /**
