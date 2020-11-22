@@ -35,7 +35,7 @@ class Settings
         $this->builder = new WPRS\Builder();
         do_action('wprs_build_settings', $this->builder);
         $this->settings = $this->builder->get_settings();
-        $this->data  = new WPRS\Data($this->settings);
+        $this->data  = new WPRS\Data($this->option_name, $this->settings);
         new WPRS\Assets($this->slug, $this->settings);
         add_action('wprs_save_default_settings', array($this->data, 'save_option_value'));
     }

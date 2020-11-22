@@ -6,9 +6,11 @@ class Data
 {
     public $setting_array = [];
     public $settings;
+    public $option;
 
-    public function __construct($settings)
+    public function __construct($option, $settings)
     {
+        $this->option = $option;
         $this->setting_array =  $settings;
     }
     /**
