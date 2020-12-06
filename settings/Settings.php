@@ -1,8 +1,10 @@
 <?php
 
-if (file_exists(dirname(__FILE__) . '/vendor/autoload.php')) {
-    require_once dirname(__FILE__) . '/vendor/autoload.php';
-}
+include plugin_dir_path( __FILE__ ) . 'includes/Menu.php';
+include plugin_dir_path( __FILE__ ) . 'includes/Endpoint.php';
+include plugin_dir_path( __FILE__ ) . 'includes/Builder.php';
+include plugin_dir_path( __FILE__ ) . 'includes/Data.php';
+include plugin_dir_path( __FILE__ ) . 'includes/Assets.php';
 
 class Settings
 {
