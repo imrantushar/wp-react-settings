@@ -1,10 +1,10 @@
 <?php
 
-include plugin_dir_path( __FILE__ ) . 'includes/Menu.php';
-include plugin_dir_path( __FILE__ ) . 'includes/Endpoint.php';
-include plugin_dir_path( __FILE__ ) . 'includes/Builder.php';
-include plugin_dir_path( __FILE__ ) . 'includes/Data.php';
-include plugin_dir_path( __FILE__ ) . 'includes/Assets.php';
+include WPRS_DIR_PATH . 'includes/Menu.php';
+include WPRS_DIR_PATH . 'includes/Endpoint.php';
+include WPRS_DIR_PATH . 'includes/Builder.php';
+include WPRS_DIR_PATH . 'includes/Data.php';
+include WPRS_DIR_PATH . 'includes/Assets.php';
 
 class Settings
 {

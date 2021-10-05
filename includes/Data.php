@@ -23,6 +23,7 @@ class Data
     public function save_option_value()
     {
         $field = array();
+        error_log(print_r($this->setting_array, true));
         foreach ($this->setting_array as $setting_item) {
             if (!isset($setting_item['group'])) {
                 //normal field

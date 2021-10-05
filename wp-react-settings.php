@@ -15,13 +15,16 @@ if (!defined('WPINC')) {
     die;
 }
 
+
+define('WPRS_DIR_PATH', plugin_dir_path(__FILE__));
+
 /**
  * Include Plugin Main Class
  *
  * @since 1.0.0
  */
 
-include plugin_dir_path(__FILE__) . 'settings/Settings.php';
+include plugin_dir_path(__FILE__) . 'includes/Settings.php';
 include plugin_dir_path(__FILE__) . 'demo/demo.php';
 
 /**

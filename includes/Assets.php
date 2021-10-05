@@ -24,7 +24,9 @@ class Assets
      */
     public function enqueue_admin_styles($hook_suffix)
     {
-        if ('toplevel_page_' . $this->pageSlug !== $hook_suffix) return;
+        if ('toplevel_page_' . $this->pageSlug !== $hook_suffix) {
+            return;
+        }
         wp_enqueue_style($this->pageSlug . '-style', plugins_url('assets/css/admin.css', dirname(__FILE__)), array());
     }
 
@@ -37,8 +39,16 @@ class Assets
      */
     public function enqueue_admin_scripts($hook_suffix)
     {
-        if ('toplevel_page_' . $this->pageSlug !== $hook_suffix) return;
-        wp_enqueue_script($this->pageSlug . '-admin-script', plugins_url('assets/js/admin.js', dirname(__FILE__)), array('jquery'));
+        if ('toplevel_page_' . $this->pageSlug !== $hook_suffix) {
+            return;
+        }
+        $dependencies = include_once WPRS_DIR_PATH . 'assets/js/admin-settings.asset.php';
+        wp_enqueue_script(
+            $this->pageSlug . '-admin-script',
+            plugins_url('assets/js/admin-settings.js', dirname(__FILE__)),
+            $dependencies['dependencies'],
+            $dependencies['version'],
+        );
         wp_localize_script($this->pageSlug . '-admin-script', 'wpr_object', array(
             'api_nonce' => wp_create_nonce('wp_rest'),
             'api_url' => rest_url($this->pageSlug . '/v1/'),
